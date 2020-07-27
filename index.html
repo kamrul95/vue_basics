@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Learning</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="product">
+            <div class="product-image">
+                <a v-bind:href="url" target="_blank">
+                <img v-bind:src="image"  alt="logo" srcset="">
+                </a>
+            </div>
+            <div class="product-info">
+                <h1>{{title}}</h1>
+                <p v-if="inStoke">In stoke</p>
+                <p v-else :class="{outOfStokeDecoration: !inStoke}">Out of stoke</p>
+                <ul>
+                    <li v-for="detail in details"> {{detail}}</li>
+                </ul>
+                <div v-for="(variant,index) in variants" v-bind:key="variant.variantId" class="color-box"
+                    :style="{backgroundColor: variant.variantColor}"
+                    v-on:mouseover="updateProduct(index)">
+                </div>
+                
+                    <button v-on:click="addToCart" :disabled="!inStoke" :class="{disabledButton:!inStoke}">Add to
+                        Cart</button>
+                    <div class="cart">
+                        <p>Cart ({{cart}})</p>
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
